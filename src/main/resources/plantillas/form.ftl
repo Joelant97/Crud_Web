@@ -12,8 +12,6 @@
     <!-- Bootstrap 4 CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
-
-    <!-- Font Awesome 5 -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 
@@ -37,8 +35,8 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a class="btn btn-outline-secondary rounded-0" href="/estudiante/agregar">
-                                        <i class="fas fa-user-plus"></i> Agregar estudiante
+                                    <a class="btn btn-outline-secondary rounded-0" href="/estudiante/Insertar">
+                                        <i class="fas fa-user-plus"></i> Insertar Estudiante
                                     </a>
                                 </li>
                             </ul>

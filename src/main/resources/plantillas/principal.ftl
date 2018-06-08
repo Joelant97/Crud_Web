@@ -37,9 +37,9 @@
 
     div class="col-lg-8 col-md-10 col-sm-12 mx-auto mb-3">
         <div class="alert alert-secondary text-center">
-            Aún no se ha agregado ningún estudiante. Puedes crearlo con el botón superior o aquí: <br>
-            <a href="/estudiante/agregar" class="alert-link">
-                <i class="fas fa-user-plus"></i> Agregar estudiante
+            Puedes crearlo con el botón superior o aquí: <br>
+            <a href="/estudiante/insertar" class="alert-link">
+                <i class="fas fa-user-plus"></i> Insertar Estudiante
             </a>
         </div>
     </div>
