@@ -35,7 +35,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a class="btn btn-outline-secondary rounded-0" href="/estudiante/Insertar">
+                                    <a class="btn btn-outline-secondary rounded-0" href="/estudiante/insertar">
                                         <i class="fas fa-user-plus"></i> Insertar Estudiante
                                     </a>
                                 </li>
