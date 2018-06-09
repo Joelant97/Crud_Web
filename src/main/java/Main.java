@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static spark.Spark.get;
-import static spark.Spark.notFound;
+import static spark.Spark.*;
 
 
 public class Main {
@@ -29,6 +28,7 @@ public class Main {
         estudiantes.add(new Estudiante(20135555,"Frank","Perez","809-578-5555"));
         estudiantes.add(new Estudiante(20150000,"Luis","Gomez","809-578-1212"));
 
+
         get("/", (request, response) -> {
 
             //Crear Modelo de Datos
@@ -48,7 +48,12 @@ public class Main {
         });
 
 
-
+        //Path groups: Si se tiene muchas rutas, puede ser útil separarlas en grupos.
+        path("/estudiantes", () -> {
+            //post();
+            //get();
+            //delete();
+        });
 
 
         // Error 404
