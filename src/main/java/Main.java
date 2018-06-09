@@ -50,7 +50,21 @@ public class Main {
 
         //Path groups: Si se tiene muchas rutas, puede ser útil separarlas en grupos.
         path("/estudiantes", () -> {
-            //post();
+            post("/insertar", (request, response) -> {
+
+                        //rutas para guardar entradas.
+                        int matricula = Integer.parseUnsignedInt(request.queryParams("matricula"));
+                        String nombre = request.queryParams("nombre");
+                        String apellido = request.queryParams("apellido");
+                        String telefono = request.queryParams("telefono");
+                        estudiantes.add(new Estudiante(matricula, nombre, apellido, telefono));
+
+                        response.redirect("/");
+
+
+                        return null;
+
+                    });
             //get();
             //delete();
         });
