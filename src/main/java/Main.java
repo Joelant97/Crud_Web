@@ -1,6 +1,7 @@
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
+
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -65,7 +66,16 @@ public class Main {
                         return null;
 
                     });
-            //get();
+            get("/insertar", (request, response) -> {
+               Writer consoleWriter = new StringWriter();
+
+               //Config. ruta para form de insertar.
+                Template plantilla = cfg.getTemplate("plantillas/insertar.ftl");
+                plantilla.process(null, consoleWriter);
+
+                return consoleWriter;
+
+            });
             //delete();
         });
 
