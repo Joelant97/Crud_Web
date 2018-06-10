@@ -22,12 +22,12 @@ public class Main {
         get("/prueba", (req, res) -> "Spark + ..."); */
 
         //ArrayList para Estudiantes.
-        ArrayList<Estudiante> estudiantes = new ArrayList<>();
+        ArrayList<Estudiante> students = new ArrayList<>();
 
         //listado de estudiantes
-        estudiantes.add(new Estudiante(20121776,"Joel","Rodriguez","809-555-5555"));
-        estudiantes.add(new Estudiante(20135555,"Frank","Perez","809-578-5555"));
-        estudiantes.add(new Estudiante(20150000,"Luis","Gomez","809-578-1212"));
+        students.add(new Estudiante(20121776,"Joel","Rodriguez","809-555-5555"));
+        students.add(new Estudiante(20135555,"Frank","Perez","809-578-5555"));
+        students.add(new Estudiante(20150000,"Luis","Gomez","809-578-1212"));
 
 
         get("/", (request, response) -> {
@@ -35,7 +35,7 @@ public class Main {
             //Crear Modelo de Datos
             Map<String, Object> input = new HashMap<>();
             input.put("blogTitle", "Plantilla Freemarker Lista Estudiantes");
-            input.put("estudiantes", estudiantes);
+            input.put("students", students);
 
             //Instanciar Plantilla
             Template plantilla = cfg.getTemplate("plantillas/principal.ftl");
@@ -58,7 +58,7 @@ public class Main {
                         String nombre = request.queryParams("nombre");
                         String apellido = request.queryParams("apellido");
                         String telefono = request.queryParams("telefono");
-                        estudiantes.add(new Estudiante(matricula, nombre, apellido, telefono));
+                        students.add(new Estudiante(matricula, nombre, apellido, telefono));
 
                         response.redirect("/");
 
@@ -76,6 +76,62 @@ public class Main {
                 return consoleWriter;
 
             });
+
+
+            //Ruta para Editar Estudiantes
+            get("/editar/:matricula", (request, response) -> {
+                try {
+
+                    Map<String, Object> input = new HashMap<>();
+                    Estudiante student = null;
+
+                    Template plantilla = cfg.getTemplate("plantillas/editar.ftl");
+
+                    if (student == null) {
+                        throw new Exception();
+                    }
+
+                    for (Estudiante est : students) {
+                        if (est.getMatricula() == Integer.parseInt(request.params("matricula"))) {   //Ind. las ruta por las matriculas
+                            student = est;
+                        }
+                    }
+
+                    StringWriter consoleWriter = new StringWriter();
+                    input.put("student", student);
+                    plantilla.process(input, consoleWriter);
+
+                    return consoleWriter;
+                } catch (Exception fail) {
+                    fail.printStackTrace();   //Imprime el registro donde sucedio la exception en spark
+                    return null;
+                }
+            });
+
+            //Guardar cambios al editar
+            post("/editar", (request, response) -> {
+                int matricula = Integer.parseInt(request.queryParams("matricula"));
+
+                String nombre = request.queryParams("nombre");
+                String apellido = request.queryParams("apellido");
+                String telefono = request.queryParams("telefono");                                             *
+
+                for (Estudiante est : students) {
+                    if (est.getMatricula() == matricula) {
+
+                        est.setNombre(nombre);
+                        est.setApellido(apellido);
+                        est.setTelefono(telefono);
+                    }
+                }
+
+                response.redirect("/");
+
+                return null;
+            });
+
+
+
             //delete();
         });
 
