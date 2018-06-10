@@ -114,7 +114,7 @@ public class Main {
 
                 String nombre = request.queryParams("nombre");
                 String apellido = request.queryParams("apellido");
-                String telefono = request.queryParams("telefono");                                             *
+                String telefono = request.queryParams("telefono");
 
                 for (Estudiante est : students) {
                     if (est.getMatricula() == matricula) {
@@ -130,6 +130,37 @@ public class Main {
                 return null;
             });
 
+            //Visualizar estudiante selecionado
+            get("/:matricula", (req, res) -> {
+                try {
+
+                    Map<String, Object> input = new HashMap<>();
+
+                    Estudiante student = null;
+                    Template plantilla = cfg.getTemplate("plantillas/visualizar-estudiante.ftl");
+
+                    if (student == null) {
+                        throw new Exception();
+                    }
+
+                    for (Estudiante est : students) {
+                        if (est.getMatricula() == Integer.parseInt(req.params("matricula"))) {
+                            student = est;
+                        }
+                    }
+
+                    StringWriter consoleWriter = new StringWriter();
+                    input.put("estudiante", student);
+                    plantilla.process(input, consoleWriter);
+
+                    return consoleWriter;
+
+                } catch (Exception error) {
+                    error.printStackTrace();
+                    return null;
+
+                }
+            });
 
 
             //delete();
