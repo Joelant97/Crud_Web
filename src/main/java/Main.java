@@ -131,7 +131,7 @@ public class Main {
             });
 
             //Visualizar estudiante selecionado
-            get("/:matricula", (req, res) -> {
+            get("/:matricula", (request, response) -> {
                 try {
 
                     Map<String, Object> input = new HashMap<>();
@@ -144,7 +144,7 @@ public class Main {
                     }
 
                     for (Estudiante est : students) {
-                        if (est.getMatricula() == Integer.parseInt(req.params("matricula"))) {
+                        if (est.getMatricula() == Integer.parseInt(request.params("matricula"))) {
                             student = est;
                         }
                     }
@@ -163,7 +163,36 @@ public class Main {
             });
 
 
-            //delete();
+            //Borrar Estudiantes Seleccionado
+            post("/borrar/:matricula", (request, response) -> {
+
+                StringWriter consoleWriter = new StringWriter();
+
+                Template plantilla = cfg.getTemplate("plantillas/borrar.ftl");
+
+                int matricula = Integer.parseInt(request.params("matricula"));
+                Estudiante student = null;
+
+                if (student == null) {
+                    throw new Exception();
+                }
+
+                for (Estudiante est : students) {
+                    if (est.getMatricula() == matricula) {
+                        student = est;
+                    }
+                }
+
+                Map<String, Object> input = new HashMap<>();
+                input.put("student", student);
+                plantilla.process(input, consoleWriter);
+
+                students.remove(student);
+
+                response.redirect("/");
+
+                return null;
+            });
         });
 
 
