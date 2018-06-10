@@ -97,7 +97,7 @@ public class Main {
                         }
                     }
 
-                    StringWriter consoleWriter = new StringWriter();
+                    Writer consoleWriter = new StringWriter();
                     input.put("student", student);
                     plantilla.process(input, consoleWriter);
 
@@ -149,9 +149,10 @@ public class Main {
                         }
                     }
 
-                    StringWriter consoleWriter = new StringWriter();
+                    Writer consoleWriter = new StringWriter();
                     input.put("estudiante", student);
                     plantilla.process(input, consoleWriter);
+                    consoleWriter.flush();
 
                     return consoleWriter;
 
@@ -166,7 +167,7 @@ public class Main {
             //Borrar Estudiantes Seleccionado
             post("/borrar/:matricula", (request, response) -> {
 
-                StringWriter consoleWriter = new StringWriter();
+                Writer consoleWriter = new StringWriter();
 
                 Template plantilla = cfg.getTemplate("plantillas/borrar.ftl");
 
